@@ -19,6 +19,7 @@ function useDegrees() {
         setLoading(false);
       } catch (error) {
         setError(error);
+        setLoading(false);
         console.error(error);
       }
     }
