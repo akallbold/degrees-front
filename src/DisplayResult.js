@@ -6,11 +6,13 @@ function DisplayResult() {
   const { degreeData, loading } = useDegrees();
 
   const renderDegrees = () => {
-    degreeData.map((degree) => {
+    return degreeData.map((degree) => {
       return (
         <div>
           <ul>
-            <li>{degree}</li>
+            <li>
+              <Typography>{degree}</Typography>
+            </li>
           </ul>
         </div>
       );

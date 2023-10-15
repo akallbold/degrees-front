@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+
 const getDataEndpoint = process.env.REACT_APP_GET_DATA_ENDPOINT;
 
 function useDegrees() {
@@ -15,7 +16,7 @@ function useDegrees() {
         const response = await fetch(getDataEndpoint);
         const data = await response.json();
         console.log({ data });
-        setDegreeData(data);
+        setDegreeData([data.message]);
         setLoading(false);
       } catch (error) {
         setError(error);
