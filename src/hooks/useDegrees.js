@@ -19,6 +19,10 @@ function useDegrees() {
         setDegreeData([data.message]);
         setLoading(false);
       } catch (error) {
+        if (error.message === "Which one?") {
+          setMultiselect(true);
+          setMultiselectData(error.data);
+        }
         setError(error);
         setLoading(false);
         console.error(error);
