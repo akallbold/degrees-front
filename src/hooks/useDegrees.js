@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const getDataEndpoint = process.env.REACT_APP_GET_DATA_ENDPOINT;
 
@@ -9,29 +9,37 @@ function useDegrees() {
   const [multiselect, setMultiselect] = useState(false);
   const [multiselectData, setMultiselectData] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      setLoading(true);
-      try {
-        const response = await fetch(getDataEndpoint);
-        const data = await response.json();
-        console.log({ data });
-        setDegreeData([data.message]);
-        setLoading(false);
-      } catch (error) {
-        if (error.message === "Which one?") {
-          setMultiselect(true);
-          setMultiselectData(error.data);
-        }
-        setError(error);
-        setLoading(false);
-        console.error(error);
+  async function fetchData(input1, input2) {
+    setLoading(true);
+    console.log({ input1, input2 });
+    try {
+      const response = await fetch(getDataEndpoint, {
+        method: "POST",
+        body: JSON.stringify({ input1, input2 }),
+      });
+      const data = await response.json();
+      console.log({ data });
+      setDegreeData([data.message]);
+      setLoading(false);
+    } catch (error) {
+      if (error.message === "Which one?") {
+        setMultiselect(true);
+        setMultiselectData(error.data);
       }
+      setError(error);
+      setLoading(false);
+      console.error(error);
     }
-    fetchData();
-  }, []);
+  }
 
-  return { degreeData, error, loading, multiselect, multiselectData };
+  return {
+    degreeData,
+    error,
+    fetchData,
+    loading,
+    multiselect,
+    multiselectData,
+  };
 }
 
 export default useDegrees;

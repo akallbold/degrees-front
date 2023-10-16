@@ -1,17 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
+import useDegrees from "./hooks/useDegrees";
 
 function InputArea() {
-  const [input1, setInput1] = useState("");
-  const [input2, setInput2] = useState("");
+  const [input1, setInput1] = useState("Kevin bacon");
+  const [input2, setInput2] = useState("Tom cruise");
+  const { fetchData } = useDegrees();
 
   const handleSubmit = () => {
-    // trim inputs
-    // validate inputs
-    // call api
+    const input1Trimmed = input1.trim();
+    const input2Trimmed = input2.trim();
+    fetchData(input1Trimmed, input2Trimmed);
   };
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      if (event.key === "Enter") {
+        handleSubmit();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Box

@@ -4,11 +4,19 @@ import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
 import { Typography } from "@mui/material";
 import MultiSelect from "./MultiSelect";
 import useDegrees from "./hooks/useDegrees";
+import bg from "./graph.png";
 
 function App() {
   const { multiSelect } = useDegrees();
   return (
-    <Grid2>
+    <Grid2
+      style={{
+        // backgroundImage: `url(${bg})`,
+        backgroundImage: { bg },
+        backgroundSize: "contain",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       <Typography>
         This project was built to demonstrate traversing a graph database and
         saving the path. Here we are visiting six degrees of Kevin Bacon
