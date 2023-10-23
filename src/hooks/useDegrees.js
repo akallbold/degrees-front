@@ -17,6 +17,7 @@ function useDegrees() {
         method: "POST",
         body: JSON.stringify({ input1, input2 }),
       });
+
       const data = await response.json();
       console.log({ data });
       setDegreeData([data.message]);
