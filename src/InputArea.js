@@ -5,8 +5,8 @@ import { Button } from "@mui/material";
 import useDegrees from "./hooks/useDegrees";
 
 function InputArea() {
-  const [input1, setInput1] = useState("Kevin bacon");
-  const [input2, setInput2] = useState("Tom cruise");
+  const [input1, setInput1] = useState("");
+  const [input2, setInput2] = useState("");
   const { fetchData } = useDegrees();
 
   const handleSubmit = () => {
