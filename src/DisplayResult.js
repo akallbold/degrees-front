@@ -1,14 +1,14 @@
-import { CircularProgress, Typography } from "@mui/material";
-import useDegrees from "./hooks/useDegrees";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import { CircularProgress, Typography } from '@mui/material';
+import useDegrees from './hooks/useDegrees';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 function DisplayResult() {
   const { degreeData, loading } = useDegrees();
 
   const renderDegrees = () => {
-    return degreeData.map((degree) => {
+    return degreeData.map((degree, i) => {
       return (
-        <div>
+        <div key={i}>
           <ul>
             <li>
               <Typography>{degree}</Typography>
@@ -26,9 +26,7 @@ function DisplayResult() {
       {degreeData.length > 0 ? (
         renderDegrees()
       ) : (
-        <Typography>
-          Enter two actors above to see how they are related
-        </Typography>
+        <Typography>Enter two actors above to see how they are related</Typography>
       )}
     </Grid2>
   );

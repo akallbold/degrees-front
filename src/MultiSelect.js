@@ -1,13 +1,13 @@
-import useDegrees from "./hooks/useDegrees";
-import Grid2 from "@mui/material/Unstable_Grid2/Grid2";
+import useDegrees from './hooks/useDegrees';
+import Grid2 from '@mui/material/Unstable_Grid2/Grid2';
 
 function MultiSelect() {
   const { multiselectData } = useDegrees();
 
   const renderOptions = () => {
-    multiselectData.map((option) => {
+    multiselectData.map((option, i) => {
       return (
-        <div>
+        <div key={i}>
           <ul>
             <li>{option}</li>
           </ul>

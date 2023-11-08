@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState } from 'react';
 
 const getDataEndpoint = process.env.REACT_APP_GET_DATA_ENDPOINT;
 
@@ -9,12 +9,12 @@ function useDegrees() {
   const [multiselect, setMultiselect] = useState(false);
   const [multiselectData, setMultiselectData] = useState([]);
 
-  async function fetchData(input1, input2) {
+  const fetchData = async (input1, input2) => {
     setLoading(true);
     console.log({ input1, input2 });
     try {
       const response = await fetch(getDataEndpoint, {
-        method: "POST",
+        method: 'POST',
         body: JSON.stringify({ input1, input2 }),
       });
 
@@ -23,7 +23,7 @@ function useDegrees() {
       setDegreeData([data.message]);
       setLoading(false);
     } catch (error) {
-      if (error.message === "Which one?") {
+      if (error.message === 'Which one?') {
         setMultiselect(true);
         setMultiselectData(error.data);
       }
@@ -31,7 +31,7 @@ function useDegrees() {
       setLoading(false);
       console.error(error);
     }
-  }
+  };
 
   return {
     degreeData,
