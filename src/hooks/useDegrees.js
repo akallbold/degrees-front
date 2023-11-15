@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 const getDataEndpoint = process.env.REACT_APP_GET_DATA_ENDPOINT;
 
