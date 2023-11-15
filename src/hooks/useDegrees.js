@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const getDataEndpoint = process.env.REACT_APP_GET_DATA_ENDPOINT;
 
 function useDegrees() {
-  const [degreeData, setDegreeData] = useState([]);
+  const [degreeData, setDegreeData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [multiselect, setMultiselect] = useState(false);
@@ -11,7 +11,6 @@ function useDegrees() {
 
   const fetchData = async (input1, input2) => {
     setLoading(true);
-    console.log({ input1, input2 });
     try {
       const response = await fetch(getDataEndpoint, {
         method: 'POST',
@@ -19,17 +18,17 @@ function useDegrees() {
       });
 
       const data = await response.json();
-      console.log({ data });
-      setDegreeData([data.message]);
-      setLoading(false);
+      const newDegreeData = data.message;
+      setDegreeData(newDegreeData);
     } catch (error) {
       if (error.message === 'Which one?') {
         setMultiselect(true);
         setMultiselectData(error.data);
       }
       setError(error);
-      setLoading(false);
       console.error(error);
+    } finally {
+      setLoading(false);
     }
   };
 
