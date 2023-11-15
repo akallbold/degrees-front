@@ -26,7 +26,6 @@ function useDegrees() {
         setMultiselectData(error.data);
       }
       setError(error);
-      console.error(error);
     } finally {
       setLoading(false);
     }
